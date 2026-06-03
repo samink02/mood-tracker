@@ -1,6 +1,41 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-native",
+    "lib": ["ES2020"],
+    "types": ["react-native", "jest", "@testing-library/jest-native"],
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
+      "@/screens/*": ["src/screens/*"],
+      "@/navigation/*": ["src/navigation/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/models/*": ["src/models/*"],
+      "@/services/*": ["src/services/*"],
+      "@/state/*": ["src/state/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/tests/*": ["src/tests/*"],
+      "@/config/*": ["src/config/*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/**/*.ts",
+    "expo-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
 }
