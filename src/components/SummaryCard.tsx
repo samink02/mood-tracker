@@ -135,10 +135,10 @@ const styles = StyleSheet.create({
     marginVertical: spacing.cardMargin / 2,
   },
   card: {
-    backgroundColor: colors.backgroundCard,
+    backgroundColor: colors.card.background,
     borderRadius: spacing.cardBorderRadius,
     padding: spacing.cardPadding,
-    shadowColor: colors.cardShadow,
+    shadowColor: colors.card.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 4,
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
   dateText: {
     ...typography.heading4,
-    color: colors.textPrimary,
+    color: colors.text.primary,
   },
   moodBadge: {
     flexDirection: 'row',
@@ -188,12 +188,12 @@ const styles = StyleSheet.create({
   },
   statValue: {
     ...typography.heading4,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     fontWeight: typography.fontWeightBold,
   },
   statLabel: {
     ...typography.caption,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     marginTop: spacing.xs / 2,
   },
 });

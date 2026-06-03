@@ -5,7 +5,11 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import EmotionsCard from '@/components/EmotionsCard';
-import { createEmptyDailyEntry, Emotion, EmotionCategory } from '@/models/Journal';
+import {
+  createEmptyDailyEntry,
+  Emotion,
+  EmotionCategory,
+} from '@/models/Journal';
 
 // Mock the journal store
 const mockUpsertEntry = jest.fn();
@@ -22,7 +26,7 @@ jest.mock('@/state/journalStore', () => ({
         upsertEntry: mockUpsertEntry,
         setEmotions: mockSetEmotions,
       })),
-    },
+    }
   ),
 }));
 
@@ -39,9 +43,7 @@ describe('EmotionsCard', () => {
   });
 
   it('renders with no emotions selected', () => {
-    const { getByText } = render(
-      <EmotionsCard entry={mockEntry} />,
-    );
+    const { getByText } = render(<EmotionsCard entry={mockEntry} />);
     expect(getByText('Emotions')).toBeTruthy();
   });
 
@@ -50,23 +52,19 @@ describe('EmotionsCard', () => {
       ...mockEntry,
       emotions: sampleEmotions,
     };
-    const { getByText } = render(
-      <EmotionsCard entry={entryWithEmotions} />,
-    );
+    const { getByText } = render(<EmotionsCard entry={entryWithEmotions} />);
     expect(getByText('Joy')).toBeTruthy();
     expect(getByText('Gratitude')).toBeTruthy();
   });
 
   it('shows "Tap to add" when no emotions selected', () => {
-    const { getByText } = render(
-      <EmotionsCard entry={mockEntry} />,
-    );
+    const { getByText } = render(<EmotionsCard entry={mockEntry} />);
     expect(getByText(/tap/i)).toBeTruthy();
   });
 
   it('opens modal when tapped', () => {
-    const { getByText, queryByText } = render(
-      <EmotionsCard entry={mockEntry} />,
+    const { getByText, queryByText: _queryByText } = render(
+      <EmotionsCard entry={mockEntry} />
     );
 
     // Before tapping, the modal emotion list should not be visible
@@ -84,9 +82,7 @@ describe('EmotionsCard', () => {
       ...mockEntry,
       emotions: sampleEmotions,
     };
-    const { getByText } = render(
-      <EmotionsCard entry={entryWithEmotions} />,
-    );
+    const { getByText } = render(<EmotionsCard entry={entryWithEmotions} />);
     // Should show count of selected emotions
     expect(getByText(/2/)).toBeTruthy();
   });
@@ -101,7 +97,7 @@ describe('EmotionsCard', () => {
       ],
     };
     const { getByText } = render(
-      <EmotionsCard entry={entryWithMultipleEmotions} />,
+      <EmotionsCard entry={entryWithMultipleEmotions} />
     );
     expect(getByText('Joy')).toBeTruthy();
     expect(getByText('Sadness')).toBeTruthy();

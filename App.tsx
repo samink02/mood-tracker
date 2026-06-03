@@ -17,8 +17,8 @@ import { initializeNotifications } from '@/services/notificationService';
 import { colors } from '@/theme/colors';
 
 export default function App() {
-  const theme = useSettingsStore((s) => s.theme);
-  const isFirstLaunch = useSettingsStore((s) => s.firstLaunch);
+  const theme = useSettingsStore((s) => s.settings.theme);
+  const isFirstLaunch = useSettingsStore((s) => s.settings.firstLaunch);
 
   // Initialize notifications on mount
   useEffect(() => {

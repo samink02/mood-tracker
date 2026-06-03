@@ -33,6 +33,8 @@ Notifications.setNotificationHandler({
     shouldShowAlert: true,
     shouldPlaySound: true,
     shouldSetBadge: false,
+    shouldShowBanner: true,
+    shouldShowList: true,
   }),
 });
 
@@ -87,10 +89,7 @@ async function setupNotificationCategories(): Promise<void> {
   await Notifications.setNotificationCategoryAsync(JOURNAL_CATEGORY, [
     {
       identifier: 'OPEN_JOURNAL',
-      buttonOptions: {
-        isDestructive: false,
-        isAuthenticationRequired: false,
-      },
+      buttonTitle: 'Open Journal',
     },
   ]);
 }
@@ -174,7 +173,7 @@ export async function scheduleAllNotifications(): Promise<{
   morning: string | null;
   evening: string | null;
 }> {
-  const settings = useSettingsStore.getState();
+  const { settings } = useSettingsStore.getState();
   const result = { morning: null as string | null, evening: null as string | null };
 
   // If notifications are disabled, cancel everything
@@ -190,7 +189,7 @@ export async function scheduleAllNotifications(): Promise<{
   // Schedule morning notification
   if (settings.notifications.morningEnabled) {
     result.morning = await scheduleDailyNotification(
-      settings.notifications.morningTime,
+      settings.notifications.morningReminderTime,
       MORNING_NOTIFICATION,
       'morning-reminder',
     );
@@ -202,7 +201,7 @@ export async function scheduleAllNotifications(): Promise<{
   // Schedule evening notification
   if (settings.notifications.eveningEnabled) {
     result.evening = await scheduleDailyNotification(
-      settings.notifications.eveningTime,
+      settings.notifications.eveningReminderTime,
       EVENING_NOTIFICATION,
       'evening-reminder',
     );
@@ -227,7 +226,7 @@ export async function initializeNotifications(): Promise<void> {
     await setupNotificationCategories();
 
     // Check current settings and schedule if enabled
-    const settings = useSettingsStore.getState();
+    const { settings } = useSettingsStore.getState();
     if (settings.notifications.enabled) {
       // Request permissions if we haven't already
       if (!settings.hasRequestedNotificationPermission) {

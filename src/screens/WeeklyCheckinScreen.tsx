@@ -296,7 +296,7 @@ const WeeklyCheckinScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.background.light,
   },
   scrollView: {
     flex: 1,
@@ -316,16 +316,16 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: colors.backgroundInput,
+    backgroundColor: colors.background.input,
     alignItems: 'center',
     justifyContent: 'center',
   },
   progressStepActive: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary[500],
   },
   progressStepText: {
     ...typography.body2,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     fontWeight: typography.fontWeightBold,
   },
   progressLine: {
@@ -336,24 +336,24 @@ const styles = StyleSheet.create({
   },
   questionnaireTitle: {
     ...typography.heading2,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     marginBottom: spacing.sm,
   },
   questionnaireSubtitle: {
     ...typography.body2,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     marginBottom: spacing.lg,
     fontStyle: 'italic',
   },
   questionContainer: {
     marginBottom: spacing.lg,
-    backgroundColor: colors.backgroundCard,
+    backgroundColor: colors.card.background,
     borderRadius: spacing.cardBorderRadius,
     padding: spacing.cardPadding,
   },
   questionText: {
     ...typography.body1,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     marginBottom: spacing.md,
     fontWeight: typography.fontWeightMedium,
   },
@@ -367,19 +367,19 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: spacing.buttonBorderRadius,
     borderWidth: 1,
-    borderColor: colors.inputBorder,
-    backgroundColor: colors.inputBackground,
+    borderColor: colors.input.border,
+    backgroundColor: colors.input.background,
   },
   optionButtonSelected: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primary + '10',
+    borderColor: colors.primary[500],
+    backgroundColor: colors.primary[500] + '10',
   },
   optionText: {
     ...typography.caption,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
   },
   optionTextSelected: {
-    color: colors.primary,
+    color: colors.primary[500],
     fontWeight: typography.fontWeightSemibold,
   },
   backButton: {
@@ -387,10 +387,10 @@ const styles = StyleSheet.create({
   },
   backButtonText: {
     ...typography.body2,
-    color: colors.primary,
+    color: colors.primary[500],
   },
   nextButton: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary[500],
     borderRadius: spacing.buttonBorderRadius,
     paddingVertical: spacing.buttonPadding,
     paddingHorizontal: spacing.xl,
@@ -398,20 +398,20 @@ const styles = StyleSheet.create({
     marginTop: spacing.lg,
   },
   nextButtonDisabled: {
-    backgroundColor: colors.buttonDisabled,
+    backgroundColor: colors.button.disabled,
   },
   nextButtonText: {
     ...typography.button,
-    color: colors.buttonPrimaryText,
+    color: colors.button.primaryText,
   },
   resultsTitle: {
     ...typography.heading2,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     marginBottom: spacing.lg,
     textAlign: 'center',
   },
   resultCard: {
-    backgroundColor: colors.backgroundCard,
+    backgroundColor: colors.card.background,
     borderRadius: spacing.cardBorderRadius,
     padding: spacing.cardPadding,
     borderLeftWidth: 4,
@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
   },
   resultLabel: {
     ...typography.caption,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     textTransform: 'uppercase',
     marginBottom: spacing.xs,
   },
@@ -435,22 +435,22 @@ const styles = StyleSheet.create({
   },
   resultDescription: {
     ...typography.body2,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     marginBottom: spacing.xs,
   },
   resultRecommendation: {
     ...typography.body2,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     fontStyle: 'italic',
   },
   errorText: {
     ...typography.body2,
-    color: colors.error,
+    color: colors.status.error,
     textAlign: 'center',
     marginBottom: spacing.md,
   },
   saveButton: {
-    backgroundColor: colors.success,
+    backgroundColor: colors.status.success,
     borderRadius: spacing.buttonBorderRadius,
     paddingVertical: spacing.buttonPadding,
     paddingHorizontal: spacing.xl,
@@ -459,24 +459,24 @@ const styles = StyleSheet.create({
   },
   saveButtonText: {
     ...typography.button,
-    color: colors.buttonPrimaryText,
+    color: colors.button.primaryText,
   },
   disclaimerCard: {
-    backgroundColor: colors.warningLight,
+    backgroundColor: colors.status.warningLight,
     borderRadius: spacing.cardBorderRadius,
     padding: spacing.cardPadding,
     marginTop: spacing.xl,
     borderLeftWidth: 4,
-    borderLeftColor: colors.warning,
+    borderLeftColor: colors.status.warning,
   },
   disclaimerTitle: {
     ...typography.heading4,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     marginBottom: spacing.sm,
   },
   disclaimerText: {
     ...typography.body2,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     lineHeight: typography.body2.lineHeight * typography.lineHeightRelaxed,
   },
 });

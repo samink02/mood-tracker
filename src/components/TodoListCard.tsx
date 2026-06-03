@@ -226,7 +226,7 @@ const TodoListCard: React.FC = () => {
                 value={title}
                 onChangeText={setTitle}
                 placeholder="What do you need to do?"
-                placeholderTextColor={colors.textTertiary}
+                placeholderTextColor={colors.text.tertiary}
                 accessibilityLabel="To-do title"
               />
             </View>
@@ -238,7 +238,7 @@ const TodoListCard: React.FC = () => {
                 value={description}
                 onChangeText={setDescription}
                 placeholder="Add details..."
-                placeholderTextColor={colors.textTertiary}
+                placeholderTextColor={colors.text.tertiary}
                 multiline
                 numberOfLines={3}
                 accessibilityLabel="To-do description"
@@ -299,10 +299,10 @@ const TodoListCard: React.FC = () => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.backgroundCard,
+    backgroundColor: colors.card.background,
     borderRadius: spacing.cardBorderRadius,
     padding: spacing.cardPadding,
-    shadowColor: colors.cardShadow,
+    shadowColor: colors.card.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 4,
@@ -317,17 +317,17 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     ...typography.heading4,
-    color: colors.textPrimary,
+    color: colors.text.primary,
   },
   addButton: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary[500],
     borderRadius: spacing.buttonBorderRadius,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs,
   },
   addButtonText: {
     ...typography.body2,
-    color: colors.buttonPrimaryText,
+    color: colors.button.primaryText,
     fontWeight: typography.fontWeightSemibold,
   },
   progressContainer: {
@@ -335,23 +335,23 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     height: 6,
-    backgroundColor: colors.backgroundInput,
+    backgroundColor: colors.background.input,
     borderRadius: 3,
     overflow: 'hidden',
   },
   progressFill: {
     height: '100%',
-    backgroundColor: colors.success,
+    backgroundColor: colors.status.success,
     borderRadius: 3,
   },
   progressText: {
     ...typography.caption,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     marginTop: spacing.xs,
   },
   emptyText: {
     ...typography.body2,
-    color: colors.textTertiary,
+    color: colors.text.tertiary,
     fontStyle: 'italic',
   },
   todoList: {
@@ -359,7 +359,7 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     ...typography.caption,
-    color: colors.textTertiary,
+    color: colors.text.tertiary,
     fontWeight: typography.fontWeightSemibold,
     marginTop: spacing.md,
     marginBottom: spacing.sm,
@@ -381,17 +381,17 @@ const styles = StyleSheet.create({
   },
   todoTitle: {
     ...typography.body2,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     fontWeight: typography.fontWeightMedium,
     marginBottom: spacing.xs / 2,
   },
   completedTodoTitle: {
     textDecorationLine: 'line-through',
-    color: colors.textTertiary,
+    color: colors.text.tertiary,
   },
   todoDescription: {
     ...typography.caption,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     marginBottom: spacing.xs / 2,
   },
   statusBadge: {
@@ -410,7 +410,7 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
   },
   doneButton: {
-    backgroundColor: colors.successLight,
+    backgroundColor: colors.status.successLight,
     borderRadius: spacing.buttonBorderRadius,
     padding: spacing.xs,
     minWidth: 30,
@@ -418,7 +418,7 @@ const styles = StyleSheet.create({
   },
   doneButtonText: {
     ...typography.body1,
-    color: colors.success,
+    color: colors.status.success,
     fontWeight: typography.fontWeightBold,
   },
   deleteButton: {
@@ -426,7 +426,7 @@ const styles = StyleSheet.create({
   },
   deleteButtonText: {
     fontSize: 20,
-    color: colors.error,
+    color: colors.status.error,
     fontWeight: typography.fontWeightBold,
   },
   modalOverlay: {
@@ -435,7 +435,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.overlay,
   },
   modalContent: {
-    backgroundColor: colors.backgroundModal,
+    backgroundColor: colors.background.modal,
     borderRadius: spacing.modalBorderRadius,
     padding: spacing.modalPadding,
     width: '90%',
@@ -444,13 +444,13 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     ...typography.heading3,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     marginBottom: spacing.lg,
     textAlign: 'center',
   },
   errorText: {
     ...typography.body2,
-    color: colors.error,
+    color: colors.status.error,
     marginBottom: spacing.sm,
     textAlign: 'center',
   },
@@ -459,17 +459,17 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     ...typography.caption,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     marginBottom: spacing.xs,
   },
   textInput: {
     borderWidth: 1,
-    borderColor: colors.inputBorder,
+    borderColor: colors.input.border,
     borderRadius: spacing.inputBorderRadius,
     padding: spacing.inputPadding,
-    backgroundColor: colors.inputBackground,
+    backgroundColor: colors.input.background,
     ...typography.body2,
-    color: colors.textPrimary,
+    color: colors.text.primary,
   },
   textInputMultiline: {
     minHeight: 80,
@@ -485,7 +485,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderRadius: spacing.buttonBorderRadius,
     borderWidth: 1,
-    borderColor: colors.transparent,
+    borderColor: colors.card.transparent,
   },
   statusOptionText: {
     ...typography.caption,
@@ -504,27 +504,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cancelButton: {
-    backgroundColor: colors.buttonSecondary,
+    backgroundColor: colors.button.secondary,
     borderWidth: 1,
-    borderColor: colors.buttonSecondaryBorder,
+    borderColor: colors.button.secondaryBorder,
   },
   cancelButtonText: {
     ...typography.button,
-    color: colors.buttonSecondaryText,
+    color: colors.button.secondaryText,
   },
   saveButton: {
-    backgroundColor: colors.buttonPrimary,
+    backgroundColor: colors.button.primary,
   },
   saveButtonText: {
     ...typography.button,
-    color: colors.buttonPrimaryText,
+    color: colors.button.primaryText,
   },
 });
-
-// Need to add transparent color
-const colorsWithTransparent = {
-  ...colors,
-  transparent: 'transparent',
-};
 
 export default TodoListCard;

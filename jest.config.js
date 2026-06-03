@@ -6,7 +6,10 @@ const config = withJest(getDefaultConfig(__dirname), {
     'node_modules/(?!(@react-native|react-native|@react-navigation|victory-native|react-native-svg|react-native-reanimated|react-native-modal|expo-.*|@expo-.*)/)',
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  testMatch: ['**/__tests__/**/*.test.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+  testMatch: [
+    '**/__tests__/**/*.test.[jt]s?(x)',
+    '**/?(*.)+(spec|test).[jt]s?(x)',
+  ],
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
     '!src/**/*.d.ts',
@@ -19,11 +22,14 @@ const config = withJest(getDefaultConfig(__dirname), {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
   transform: {
-    '^.+\\.(ts|tsx)$': ['ts-jest', {
-      tsconfig: {
-        jsx: 'react',
+    '^.+\\.(ts|tsx)$': [
+      'ts-jest',
+      {
+        tsconfig: {
+          jsx: 'react',
+        },
       },
-    }],
+    ],
   },
 });
 

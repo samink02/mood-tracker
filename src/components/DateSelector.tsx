@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: spacing.screenPadding,
     paddingVertical: spacing.sm,
-    backgroundColor: colors.backgroundCard,
+    backgroundColor: colors.card.background,
     borderBottomWidth: 1,
     borderBottomColor: colors.divider,
   },
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   },
   navButtonText: {
     fontSize: 16,
-    color: colors.primary,
+    color: colors.primary[500],
   },
   dateButton: {
     flexDirection: 'row',
@@ -196,17 +196,17 @@ const styles = StyleSheet.create({
   },
   dateText: {
     ...typography.heading4,
-    color: colors.textPrimary,
+    color: colors.text.primary,
   },
   todayButton: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary[500],
     borderRadius: spacing.buttonBorderRadius,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs,
   },
   todayButtonText: {
     ...typography.caption,
-    color: colors.buttonPrimaryText,
+    color: colors.button.primaryText,
     fontWeight: typography.fontWeightSemibold,
   },
   modalOverlay: {
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.overlay,
   },
   modalContent: {
-    backgroundColor: colors.backgroundModal,
+    backgroundColor: colors.background.modal,
     borderTopLeftRadius: spacing.modalBorderRadius,
     borderTopRightRadius: spacing.modalBorderRadius,
     padding: spacing.modalPadding,
@@ -223,12 +223,12 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     ...typography.heading3,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     marginBottom: spacing.lg,
     textAlign: 'center',
   },
   todayOption: {
-    backgroundColor: colors.primary + '10',
+    backgroundColor: colors.primary[500] + '10',
     borderRadius: spacing.buttonBorderRadius,
     padding: spacing.md,
     marginBottom: spacing.md,
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   },
   todayOptionText: {
     ...typography.body1,
-    color: colors.primary,
+    color: colors.primary[500],
     fontWeight: typography.fontWeightSemibold,
   },
   dateList: {
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     ...typography.body2,
-    color: colors.textTertiary,
+    color: colors.text.tertiary,
     fontStyle: 'italic',
     textAlign: 'center',
     paddingVertical: spacing.xl,
@@ -256,25 +256,25 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.separator,
   },
   dateOptionSelected: {
-    backgroundColor: colors.primary + '10',
+    backgroundColor: colors.primary[500] + '10',
   },
   dateOptionText: {
     ...typography.body1,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     fontWeight: typography.fontWeightMedium,
   },
   dateOptionTextSelected: {
-    color: colors.primary,
+    color: colors.primary[500],
   },
   dateOptionSubtext: {
     ...typography.caption,
-    color: colors.textTertiary,
+    color: colors.text.tertiary,
     marginTop: spacing.xs / 2,
   },
   closeButton: {
-    backgroundColor: colors.buttonSecondary,
+    backgroundColor: colors.button.secondary,
     borderWidth: 1,
-    borderColor: colors.buttonSecondaryBorder,
+    borderColor: colors.button.secondaryBorder,
     borderRadius: spacing.buttonBorderRadius,
     paddingVertical: spacing.buttonPadding,
     marginTop: spacing.md,
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
   },
   closeButtonText: {
     ...typography.button,
-    color: colors.buttonSecondaryText,
+    color: colors.button.secondaryText,
   },
 });
 

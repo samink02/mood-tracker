@@ -73,11 +73,11 @@ const MoodSelector: React.FC<MoodSelectorProps> = ({ selectedDate, currentMood }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.backgroundCard,
+    backgroundColor: colors.card.background,
     borderRadius: spacing.cardBorderRadius,
     padding: spacing.cardPadding,
     marginVertical: spacing.cardMargin / 2,
-    shadowColor: colors.cardShadow,
+    shadowColor: colors.card.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 4,
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
   label: {
     ...typography.heading4,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     marginBottom: spacing.md,
   },
   moodOptions: {
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     borderRadius: spacing.buttonBorderRadius,
     borderWidth: 1,
-    borderColor: colors.cardBorder,
-    backgroundColor: colors.backgroundInput,
+    borderColor: colors.card.border,
+    backgroundColor: colors.background.input,
     minWidth: 70,
   },
   moodEmoji: {
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   moodLabel: {
     ...typography.caption,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     fontWeight: typography.fontWeightMedium,
   },
 });

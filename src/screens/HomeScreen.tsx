@@ -138,17 +138,17 @@ const HomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.background.light,
   },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.background,
+    backgroundColor: colors.background.light,
   },
   loadingText: {
     ...typography.body1,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
   },
   scrollView: {
     flex: 1,
@@ -169,12 +169,12 @@ const styles = StyleSheet.create({
     // Default stack layout for mobile
   },
   weeklyButton: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary[500],
     borderRadius: spacing.cardBorderRadius,
     padding: spacing.xl,
     alignItems: 'center',
     marginVertical: spacing.cardMargin,
-    shadowColor: colors.cardShadow,
+    shadowColor: colors.card.shadow,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.15,
     shadowRadius: 8,
@@ -186,12 +186,12 @@ const styles = StyleSheet.create({
   },
   weeklyButtonText: {
     ...typography.heading3,
-    color: colors.buttonPrimaryText,
+    color: colors.button.primaryText,
     marginBottom: spacing.xs,
   },
   weeklyButtonSubtext: {
     ...typography.body2,
-    color: colors.buttonPrimaryText + 'CC',
+    color: colors.button.primaryText + 'CC',
   },
 });
 

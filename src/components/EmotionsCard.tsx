@@ -61,15 +61,15 @@ const EmotionsCard: React.FC<EmotionsCardProps> = ({ entry }) => {
   const getCategoryColor = (category: EmotionCategory) => {
     switch (category) {
       case EmotionCategory.Positive:
-        return colors.emotionPositive;
+        return colors.emotion.positive;
       case EmotionCategory.Negative:
-        return colors.emotionNegative;
+        return colors.emotion.negative;
       case EmotionCategory.Neutral:
-        return colors.emotionNeutral;
+        return colors.emotion.neutral;
       case EmotionCategory.Complex:
-        return colors.emotionComplex;
+        return colors.emotion.complex;
       default:
-        return colors.textTertiary;
+        return colors.text.tertiary;
     }
   };
 
@@ -212,10 +212,10 @@ const styles = StyleSheet.create({
     marginVertical: spacing.cardMargin / 2,
   },
   card: {
-    backgroundColor: colors.backgroundCard,
+    backgroundColor: colors.card.background,
     borderRadius: spacing.cardBorderRadius,
     padding: spacing.cardPadding,
-    shadowColor: colors.cardShadow,
+    shadowColor: colors.card.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 4,
@@ -229,15 +229,15 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     ...typography.heading4,
-    color: colors.textPrimary,
+    color: colors.text.primary,
   },
   editHint: {
     ...typography.caption,
-    color: colors.textTertiary,
+    color: colors.text.tertiary,
   },
   emptyText: {
     ...typography.body2,
-    color: colors.textTertiary,
+    color: colors.text.tertiary,
     fontStyle: 'italic',
   },
   emotionChips: {
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.overlay,
   },
   modalContent: {
-    backgroundColor: colors.backgroundModal,
+    backgroundColor: colors.background.modal,
     borderTopLeftRadius: spacing.modalBorderRadius,
     borderTopRightRadius: spacing.modalBorderRadius,
     padding: spacing.modalPadding,
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     ...typography.heading3,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     marginBottom: spacing.lg,
     textAlign: 'center',
   },
@@ -301,8 +301,8 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.chipPaddingVertical,
     borderRadius: spacing.chipBorderRadius,
     borderWidth: 1,
-    borderColor: colors.cardBorder,
-    backgroundColor: colors.backgroundInput,
+    borderColor: colors.card.border,
+    backgroundColor: colors.background.input,
   },
   emotionOptionEmoji: {
     fontSize: spacing.iconSizeSmall,
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
   },
   emotionOptionText: {
     ...typography.caption,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
   },
   modalButtons: {
     flexDirection: 'row',
@@ -327,20 +327,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cancelButton: {
-    backgroundColor: colors.buttonSecondary,
+    backgroundColor: colors.button.secondary,
     borderWidth: 1,
-    borderColor: colors.buttonSecondaryBorder,
+    borderColor: colors.button.secondaryBorder,
   },
   cancelButtonText: {
     ...typography.button,
-    color: colors.buttonSecondaryText,
+    color: colors.button.secondaryText,
   },
   saveButton: {
-    backgroundColor: colors.buttonPrimary,
+    backgroundColor: colors.button.primary,
   },
   saveButtonText: {
     ...typography.button,
-    color: colors.buttonPrimaryText,
+    color: colors.button.primaryText,
   },
 });
 

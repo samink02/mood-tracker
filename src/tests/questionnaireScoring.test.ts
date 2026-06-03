@@ -16,7 +16,7 @@ import {
   PHQ9_QUESTIONS,
 } from '@/utils/questionnaireScoring';
 
-// ─── GAD-7 Tests ────────────────────────────────────────────────────
+// ─── GAD-7 Tests ────────────────────────────────────────────────────────────
 
 describe('GAD-7', () => {
   describe('calculateGad7Score', () => {
@@ -33,31 +33,45 @@ describe('GAD-7', () => {
       expect(calculateGad7Score([0, 1, 2, 3, 0, 1, 2])).toBe(9);
     });
 
-    it('handles partial responses (undefined values)', () => {
-      // 0+1+0+3+0+0+0 = 4
-      expect(calculateGad7Score([0, 1, undefined as any, 3, 0, 0, 0])).toBe(4);
+    it('throws if not 7 responses', () => {
+      expect(() => calculateGad7Score([0, 0, 0])).toThrow(
+        'GAD-7 requires exactly 7 responses'
+      );
+    });
+
+    it('throws if any response > 3', () => {
+      expect(() => calculateGad7Score([0, 1, 2, 5, 0, 1, 2])).toThrow(
+        'Each response must be between 0 and 3'
+      );
     });
   });
 
   describe('getGad7Severity', () => {
-    it('returns "Minimal anxiety" for score 0-4', () => {
-      expect(getGad7Severity(0)).toBe('Minimal anxiety');
-      expect(getGad7Severity(4)).toBe('Minimal anxiety');
+    it('returns Minimal for score 0-4', () => {
+      expect(getGad7Severity(0).level).toBe('Minimal');
+      expect(getGad7Severity(4).level).toBe('Minimal');
     });
 
-    it('returns "Mild anxiety" for score 5-9', () => {
-      expect(getGad7Severity(5)).toBe('Mild anxiety');
-      expect(getGad7Severity(9)).toBe('Mild anxiety');
+    it('returns Mild for score 5-9', () => {
+      expect(getGad7Severity(5).level).toBe('Mild');
+      expect(getGad7Severity(9).level).toBe('Mild');
     });
 
-    it('returns "Moderate anxiety" for score 10-14', () => {
-      expect(getGad7Severity(10)).toBe('Moderate anxiety');
-      expect(getGad7Severity(14)).toBe('Moderate anxiety');
+    it('returns Moderate for score 10-14', () => {
+      expect(getGad7Severity(10).level).toBe('Moderate');
+      expect(getGad7Severity(14).level).toBe('Moderate');
     });
 
-    it('returns "Severe anxiety" for score 15-21', () => {
-      expect(getGad7Severity(15)).toBe('Severe anxiety');
-      expect(getGad7Severity(21)).toBe('Severe anxiety');
+    it('returns Severe for score 15-21', () => {
+      expect(getGad7Severity(15).level).toBe('Severe');
+      expect(getGad7Severity(21).level).toBe('Severe');
+    });
+
+    it('returns color and recommendation for each level', () => {
+      const result = getGad7Severity(10);
+      expect(result.color).toBeTruthy();
+      expect(result.recommendation).toBeTruthy();
+      expect(result.description).toBeTruthy();
     });
   });
 
@@ -66,17 +80,16 @@ describe('GAD-7', () => {
       expect(GAD7_QUESTIONS).toHaveLength(7);
     });
 
-    it('each question has id, text, and shortForm', () => {
-      GAD7_QUESTIONS.forEach((q, i) => {
-        expect(q.id).toBe(i + 1);
-        expect(q.text).toBeTruthy();
-        expect(q.shortForm).toBeTruthy();
+    it('each question is a non-empty string', () => {
+      GAD7_QUESTIONS.forEach((q) => {
+        expect(typeof q).toBe('string');
+        expect(q.length).toBeGreaterThan(0);
       });
     });
   });
 });
 
-// ─── PHQ-9 Tests ────────────────────────────────────────────────────
+// ─── PHQ-9 Tests ────────────────────────────────────────────────────────────
 
 describe('PHQ-9', () => {
   describe('calculatePhq9Score', () => {
@@ -92,32 +105,38 @@ describe('PHQ-9', () => {
       // 0+1+2+3+0+1+2+3+0 = 12
       expect(calculatePhq9Score([0, 1, 2, 3, 0, 1, 2, 3, 0])).toBe(12);
     });
+
+    it('throws if not 9 responses', () => {
+      expect(() => calculatePhq9Score([0, 0, 0])).toThrow(
+        'PHQ-9 requires exactly 9 responses'
+      );
+    });
   });
 
   describe('getPhq9Severity', () => {
-    it('returns "No depression" for score 0-4', () => {
-      expect(getPhq9Severity(0)).toBe('No depression');
-      expect(getPhq9Severity(4)).toBe('No depression');
+    it('returns None for score 0-4', () => {
+      expect(getPhq9Severity(0).level).toBe('None');
+      expect(getPhq9Severity(4).level).toBe('None');
     });
 
-    it('returns "Mild depression" for score 5-9', () => {
-      expect(getPhq9Severity(5)).toBe('Mild depression');
-      expect(getPhq9Severity(9)).toBe('Mild depression');
+    it('returns Mild for score 5-9', () => {
+      expect(getPhq9Severity(5).level).toBe('Mild');
+      expect(getPhq9Severity(9).level).toBe('Mild');
     });
 
-    it('returns "Moderate depression" for score 10-14', () => {
-      expect(getPhq9Severity(10)).toBe('Moderate depression');
-      expect(getPhq9Severity(14)).toBe('Moderate depression');
+    it('returns Moderate for score 10-14', () => {
+      expect(getPhq9Severity(10).level).toBe('Moderate');
+      expect(getPhq9Severity(14).level).toBe('Moderate');
     });
 
-    it('returns "Moderately severe depression" for score 15-19', () => {
-      expect(getPhq9Severity(15)).toBe('Moderately severe depression');
-      expect(getPhq9Severity(19)).toBe('Moderately severe depression');
+    it('returns Moderately Severe for score 15-19', () => {
+      expect(getPhq9Severity(15).level).toBe('Moderately Severe');
+      expect(getPhq9Severity(19).level).toBe('Moderately Severe');
     });
 
-    it('returns "Severe depression" for score 20-27', () => {
-      expect(getPhq9Severity(20)).toBe('Severe depression');
-      expect(getPhq9Severity(27)).toBe('Severe depression');
+    it('returns Severe for score 20-27', () => {
+      expect(getPhq9Severity(20).level).toBe('Severe');
+      expect(getPhq9Severity(27).level).toBe('Severe');
     });
   });
 
@@ -126,92 +145,104 @@ describe('PHQ-9', () => {
       expect(PHQ9_QUESTIONS).toHaveLength(9);
     });
 
-    it('each question has id, text, and shortForm', () => {
-      PHQ9_QUESTIONS.forEach((q, i) => {
-        expect(q.id).toBe(i + 1);
-        expect(q.text).toBeTruthy();
-        expect(q.shortForm).toBeTruthy();
+    it('each question is a non-empty string', () => {
+      PHQ9_QUESTIONS.forEach((q) => {
+        expect(typeof q).toBe('string');
+        expect(q.length).toBeGreaterThan(0);
       });
     });
   });
 
   describe('assessSuicideRisk', () => {
-    it('returns true when PHQ-9 Q9 response > 0', () => {
-      // Q9 is the 9th item (index 8)
-      const responses = [0, 0, 0, 0, 0, 0, 0, 0, 1];
-      expect(assessSuicideRisk(responses)).toBe(true);
+    it('returns none when PHQ-9 Q9 response is 0', () => {
+      const result = assessSuicideRisk([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+      expect(result.risk).toBe('none');
     });
 
-    it('returns false when PHQ-9 Q9 response is 0', () => {
-      const responses = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-      expect(assessSuicideRisk(responses)).toBe(false);
+    it('returns low when PHQ-9 Q9 response is 1', () => {
+      const result = assessSuicideRisk([0, 0, 0, 0, 0, 0, 0, 0, 1]);
+      expect(result.risk).toBe('low');
+      expect(result.message).toBeTruthy();
     });
 
-    it('returns false when PHQ-9 Q9 response is undefined', () => {
-      const responses = [0, 0, 0, 0, 0, 0, 0, 0];
-      expect(assessSuicideRisk(responses)).toBe(false);
+    it('returns high when PHQ-9 Q9 response is 3', () => {
+      const result = assessSuicideRisk([0, 0, 0, 0, 0, 0, 0, 0, 3]);
+      expect(result.risk).toBe('high');
+      expect(result.message).toBeTruthy();
+    });
+
+    it('throws if not 9 responses', () => {
+      expect(() => assessSuicideRisk([0, 0, 0])).toThrow(
+        'PHQ-9 requires exactly 9 responses'
+      );
     });
   });
 });
 
-// ─── Cross-Checkin Tests ─────────────────────────────────────────────
+// ─── Validation Tests ───────────────────────────────────────────────────────
 
 describe('validateQuestionnaireResponses', () => {
-  it('returns valid for correct GAD-7 responses', () => {
-    const result = validateQuestionnaireResponses([0, 1, 2, 3, 0, 1, 2], 'gad7');
+  it('returns valid for correct GAD-7 responses (7 items)', () => {
+    const result = validateQuestionnaireResponses([0, 1, 2, 3, 0, 1, 2], 7);
     expect(result.valid).toBe(true);
-    expect(result.errors).toHaveLength(0);
+    expect(result.error).toBeUndefined();
   });
 
-  it('returns valid for correct PHQ-9 responses', () => {
+  it('returns valid for correct PHQ-9 responses (9 items)', () => {
     const result = validateQuestionnaireResponses(
       [0, 1, 2, 3, 0, 1, 2, 3, 0],
-      'phq9',
+      9
     );
     expect(result.valid).toBe(true);
-    expect(result.errors).toHaveLength(0);
+    expect(result.error).toBeUndefined();
   });
 
-  it('returns invalid for wrong number of GAD-7 responses', () => {
-    const result = validateQuestionnaireResponses([0, 1, 2], 'gad7');
+  it('returns invalid for wrong number of responses', () => {
+    const result = validateQuestionnaireResponses([0, 1, 2], 7);
     expect(result.valid).toBe(false);
-    expect(result.errors.length).toBeGreaterThan(0);
-  });
-
-  it('returns invalid for wrong number of PHQ-9 responses', () => {
-    const result = validateQuestionnaireResponses([0, 1, 2, 3, 0, 1, 2], 'phq9');
-    expect(result.valid).toBe(false);
-    expect(result.errors.length).toBeGreaterThan(0);
+    expect(result.error).toBeTruthy();
   });
 
   it('returns invalid for out-of-range values', () => {
-    const result = validateQuestionnaireResponses([0, 1, 5, 3, 0, 1, 2], 'gad7');
+    const result = validateQuestionnaireResponses([0, 1, 5, 3, 0, 1, 2], 7);
     expect(result.valid).toBe(false);
+    expect(result.error).toBeTruthy();
+  });
+
+  it('returns invalid for non-integer values', () => {
+    const result = validateQuestionnaireResponses([0, 1.5, 2, 3, 0, 1, 2], 7);
+    expect(result.valid).toBe(false);
+    expect(result.error).toBeTruthy();
   });
 });
 
+// ─── Score Change & Average Tests ───────────────────────────────────────────
+
 describe('calculateScoreChange', () => {
-  it('returns positive change for improving scores', () => {
-    // Lower GAD-7 score is better, so going from 15 to 5 is +10 improvement
+  it('shows improvement when score decreases', () => {
     const change = calculateScoreChange(15, 5);
-    expect(change).toBe(10); // Score decreased = improvement
+    expect(change.improved).toBe(true);
+    expect(change.worsened).toBe(false);
+    expect(change.change).toBe(-10);
   });
 
-  it('returns negative change for worsening scores', () => {
+  it('shows worsening when score increases', () => {
     const change = calculateScoreChange(5, 15);
-    expect(change).toBe(-10); // Score increased = worsening
+    expect(change.improved).toBe(false);
+    expect(change.worsened).toBe(true);
+    expect(change.change).toBe(10);
   });
 
-  it('returns 0 for unchanged scores', () => {
+  it('shows no change for same scores', () => {
     const change = calculateScoreChange(10, 10);
-    expect(change).toBe(0);
+    expect(change.same).toBe(true);
+    expect(change.change).toBe(0);
   });
 });
 
 describe('calculateAverageScore', () => {
   it('calculates average of scores', () => {
-    const scores = [5, 10, 15, 20];
-    expect(calculateAverageScore(scores)).toBe(12.5);
+    expect(calculateAverageScore([5, 10, 15, 20])).toBe(12.5);
   });
 
   it('returns 0 for empty array', () => {
@@ -220,23 +251,40 @@ describe('calculateAverageScore', () => {
 });
 
 describe('getScoreTrend', () => {
-  it('returns "improving" for decreasing scores over time', () => {
-    const scores = [20, 15, 10, 5];
-    expect(getScoreTrend(scores)).toBe('improving');
+  it('returns improving for decreasing scores over time', () => {
+    const scores = [
+      { date: '2024-01-01', score: 20 },
+      { date: '2024-01-08', score: 15 },
+      { date: '2024-01-15', score: 10 },
+      { date: '2024-01-22', score: 5 },
+    ];
+    expect(getScoreTrend(scores).trend).toBe('improving');
   });
 
-  it('returns "worsening" for increasing scores over time', () => {
-    const scores = [5, 10, 15, 20];
-    expect(getScoreTrend(scores)).toBe('worsening');
+  it('returns worsening for increasing scores over time', () => {
+    const scores = [
+      { date: '2024-01-01', score: 5 },
+      { date: '2024-01-08', score: 10 },
+      { date: '2024-01-15', score: 15 },
+      { date: '2024-01-22', score: 20 },
+    ];
+    expect(getScoreTrend(scores).trend).toBe('worsening');
   });
 
-  it('returns "stable" for flat scores', () => {
-    const scores = [10, 10, 10, 10];
-    expect(getScoreTrend(scores)).toBe('stable');
+  it('returns stable for flat scores', () => {
+    const scores = [
+      { date: '2024-01-01', score: 10 },
+      { date: '2024-01-08', score: 10 },
+      { date: '2024-01-15', score: 10 },
+      { date: '2024-01-22', score: 10 },
+    ];
+    expect(getScoreTrend(scores).trend).toBe('stable');
   });
 
-  it('returns "unknown" for insufficient data', () => {
-    expect(getScoreTrend([])).toBe('unknown');
-    expect(getScoreTrend([10])).toBe('unknown');
+  it('returns stable for insufficient data', () => {
+    expect(getScoreTrend([]).trend).toBe('stable');
+    expect(getScoreTrend([{ date: '2024-01-01', score: 10 }]).trend).toBe(
+      'stable'
+    );
   });
 });

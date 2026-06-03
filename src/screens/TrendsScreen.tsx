@@ -160,7 +160,7 @@ const TrendsScreen: React.FC = () => {
         '😴',
         chartData.sleepData,
         'h',
-        colors.chartLine1
+        colors.chart.line1
       )}
 
       {/* Mood Chart */}
@@ -169,7 +169,7 @@ const TrendsScreen: React.FC = () => {
         '🎭',
         chartData.moodData,
         '',
-        colors.chartLine2
+        colors.chart.line2
       )}
 
       {/* Calories Chart */}
@@ -178,7 +178,7 @@ const TrendsScreen: React.FC = () => {
         '🔥',
         chartData.calorieData,
         ' cal',
-        colors.chartLine3
+        colors.chart.line3
       )}
 
       {/* Activities Chart */}
@@ -187,7 +187,7 @@ const TrendsScreen: React.FC = () => {
         '🏃',
         chartData.activityData,
         '',
-        colors.primary
+        colors.primary[500]
       )}
 
       {/* GAD-7 Weekly Chart */}
@@ -197,7 +197,7 @@ const TrendsScreen: React.FC = () => {
           '😰',
           chartData.gad7Trend.map((t) => ({ date: t.date, value: t.score })),
           '/21',
-          colors.warning
+          colors.status.warning
         )}
 
       {/* PHQ-9 Weekly Chart */}
@@ -207,7 +207,7 @@ const TrendsScreen: React.FC = () => {
           '😔',
           chartData.phq9Trend.map((t) => ({ date: t.date, value: t.score })),
           '/27',
-          colors.error
+          colors.status.error
         )}
 
       {/* Data Summary */}
@@ -232,7 +232,7 @@ const TrendsScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.background.light,
   },
   scrollContent: {
     paddingHorizontal: spacing.screenPadding,
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.background,
+    backgroundColor: colors.background.light,
     padding: spacing.xxl,
   },
   emptyEmoji: {
@@ -252,20 +252,20 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     ...typography.heading2,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     marginBottom: spacing.sm,
   },
   emptySubtitle: {
     ...typography.body1,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     textAlign: 'center',
   },
   chartCard: {
-    backgroundColor: colors.backgroundCard,
+    backgroundColor: colors.card.background,
     borderRadius: spacing.cardBorderRadius,
     padding: spacing.cardPadding,
     marginVertical: spacing.cardMargin / 2,
-    shadowColor: colors.cardShadow,
+    shadowColor: colors.card.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 4,
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
   },
   chartTitle: {
     ...typography.heading4,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     marginBottom: spacing.md,
   },
   chartArea: {
@@ -302,12 +302,12 @@ const styles = StyleSheet.create({
   chartDateLabel: {
     ...typography.caption,
     fontSize: 8,
-    color: colors.textTertiary,
+    color: colors.text.tertiary,
     marginTop: 2,
   },
   chartValueLabel: {
     fontSize: 8,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
   },
   chartSummary: {
     flexDirection: 'row',
@@ -319,11 +319,11 @@ const styles = StyleSheet.create({
   },
   summaryText: {
     ...typography.caption,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     fontWeight: typography.fontWeightMedium,
   },
   summaryCard: {
-    backgroundColor: colors.backgroundCard,
+    backgroundColor: colors.card.background,
     borderRadius: spacing.cardBorderRadius,
     padding: spacing.cardPadding,
     marginVertical: spacing.cardMargin / 2,
@@ -331,12 +331,12 @@ const styles = StyleSheet.create({
   },
   summaryCardTitle: {
     ...typography.heading4,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     marginBottom: spacing.sm,
   },
   summaryCardText: {
     ...typography.body2,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     marginBottom: spacing.xs,
   },
 });

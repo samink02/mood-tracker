@@ -19,40 +19,40 @@ export const theme = {
 
 export type Theme = typeof theme;
 
-// Common style presets
+// Common style presets using the nested color structure
 export const commonStyles = {
   card: {
-    backgroundColor: colors.backgroundCard,
+    backgroundColor: colors.card.background,
     borderRadius: spacing.cardBorderRadius,
     padding: spacing.cardPadding,
     elevation: spacing.cardElevation,
-    shadowColor: colors.cardShadow,
+    shadowColor: colors.card.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 4,
   },
   button: {
     primary: {
-      backgroundColor: colors.buttonPrimary,
+      backgroundColor: colors.button.primary,
       borderRadius: spacing.buttonBorderRadius,
       paddingVertical: spacing.buttonPadding,
       paddingHorizontal: spacing.lg,
     },
     secondary: {
-      backgroundColor: colors.buttonSecondary,
+      backgroundColor: colors.button.secondary,
       borderRadius: spacing.buttonBorderRadius,
       paddingVertical: spacing.buttonPadding,
       paddingHorizontal: spacing.lg,
       borderWidth: 1,
-      borderColor: colors.buttonSecondaryBorder,
+      borderColor: colors.button.secondaryBorder,
     },
   },
   input: {
     borderWidth: 1,
-    borderColor: colors.inputBorder,
+    borderColor: colors.input.border,
     borderRadius: spacing.inputBorderRadius,
     padding: spacing.inputPadding,
-    backgroundColor: colors.inputBackground,
+    backgroundColor: colors.input.background,
   },
   badge: {
     paddingHorizontal: spacing.badgePaddingHorizontal,

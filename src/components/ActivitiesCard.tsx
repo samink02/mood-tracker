@@ -88,9 +88,9 @@ const ActivitiesCard: React.FC<ActivitiesCardProps> = ({ entry }) => {
   };
 
   const getExhaustionColor = (level: number) => {
-    if (level <= 3) return colors.success;
-    if (level <= 6) return colors.warning;
-    return colors.error;
+    if (level <= 3) return colors.status.success;
+    if (level <= 6) return colors.status.warning;
+    return colors.status.error;
   };
 
   return (
@@ -161,7 +161,7 @@ const ActivitiesCard: React.FC<ActivitiesCardProps> = ({ entry }) => {
                 value={name}
                 onChangeText={setName}
                 placeholder="e.g., Walking, Meeting"
-                placeholderTextColor={colors.textTertiary}
+                placeholderTextColor={colors.text.tertiary}
                 accessibilityLabel="Activity name"
               />
             </View>
@@ -175,7 +175,7 @@ const ActivitiesCard: React.FC<ActivitiesCardProps> = ({ entry }) => {
                   onChangeText={setHoursOut}
                   placeholder="0"
                   keyboardType="decimal-pad"
-                  placeholderTextColor={colors.textTertiary}
+                  placeholderTextColor={colors.text.tertiary}
                   accessibilityLabel="Hours out"
                 />
               </View>
@@ -189,7 +189,7 @@ const ActivitiesCard: React.FC<ActivitiesCardProps> = ({ entry }) => {
                   placeholder="5"
                   keyboardType="number-pad"
                   maxLength={2}
-                  placeholderTextColor={colors.textTertiary}
+                  placeholderTextColor={colors.text.tertiary}
                   accessibilityLabel="Exhaustion level"
                 />
               </View>
@@ -202,7 +202,7 @@ const ActivitiesCard: React.FC<ActivitiesCardProps> = ({ entry }) => {
                 value={note}
                 onChangeText={setNote}
                 placeholder="Any notes about this activity"
-                placeholderTextColor={colors.textTertiary}
+                placeholderTextColor={colors.text.tertiary}
                 multiline
                 numberOfLines={3}
                 accessibilityLabel="Activity note"
@@ -234,10 +234,10 @@ const ActivitiesCard: React.FC<ActivitiesCardProps> = ({ entry }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.backgroundCard,
+    backgroundColor: colors.card.background,
     borderRadius: spacing.cardBorderRadius,
     padding: spacing.cardPadding,
-    shadowColor: colors.cardShadow,
+    shadowColor: colors.card.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 4,
@@ -252,22 +252,22 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     ...typography.heading4,
-    color: colors.textPrimary,
+    color: colors.text.primary,
   },
   addButton: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary[500],
     borderRadius: spacing.buttonBorderRadius,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.xs,
   },
   addButtonText: {
     ...typography.body2,
-    color: colors.buttonPrimaryText,
+    color: colors.button.primaryText,
     fontWeight: typography.fontWeightSemibold,
   },
   emptyText: {
     ...typography.body2,
-    color: colors.textTertiary,
+    color: colors.text.tertiary,
     fontStyle: 'italic',
   },
   activityList: {
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   },
   activityName: {
     ...typography.body1,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     fontWeight: typography.fontWeightMedium,
     marginBottom: spacing.xs / 2,
   },
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
   },
   activityDetail: {
     ...typography.caption,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
   },
   exhaustionBadge: {
     paddingHorizontal: spacing.badgePaddingHorizontal,
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
   },
   activityNote: {
     ...typography.caption,
-    color: colors.textTertiary,
+    color: colors.text.tertiary,
     marginTop: spacing.xs / 2,
   },
   deleteButton: {
@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
   },
   deleteButtonText: {
     fontSize: 20,
-    color: colors.error,
+    color: colors.status.error,
     fontWeight: typography.fontWeightBold,
   },
   modalOverlay: {
@@ -328,7 +328,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.overlay,
   },
   modalContent: {
-    backgroundColor: colors.backgroundModal,
+    backgroundColor: colors.background.modal,
     borderRadius: spacing.modalBorderRadius,
     padding: spacing.modalPadding,
     width: '90%',
@@ -337,13 +337,13 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     ...typography.heading3,
-    color: colors.textPrimary,
+    color: colors.text.primary,
     marginBottom: spacing.lg,
     textAlign: 'center',
   },
   errorText: {
     ...typography.body2,
-    color: colors.error,
+    color: colors.status.error,
     marginBottom: spacing.sm,
     textAlign: 'center',
   },
@@ -360,17 +360,17 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     ...typography.caption,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     marginBottom: spacing.xs,
   },
   textInput: {
     borderWidth: 1,
-    borderColor: colors.inputBorder,
+    borderColor: colors.input.border,
     borderRadius: spacing.inputBorderRadius,
     padding: spacing.inputPadding,
-    backgroundColor: colors.inputBackground,
+    backgroundColor: colors.input.background,
     ...typography.body2,
-    color: colors.textPrimary,
+    color: colors.text.primary,
   },
   textInputMultiline: {
     minHeight: 80,
@@ -389,20 +389,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cancelButton: {
-    backgroundColor: colors.buttonSecondary,
+    backgroundColor: colors.button.secondary,
     borderWidth: 1,
-    borderColor: colors.buttonSecondaryBorder,
+    borderColor: colors.button.secondaryBorder,
   },
   cancelButtonText: {
     ...typography.button,
-    color: colors.buttonSecondaryText,
+    color: colors.button.secondaryText,
   },
   saveButton: {
-    backgroundColor: colors.buttonPrimary,
+    backgroundColor: colors.button.primary,
   },
   saveButtonText: {
     ...typography.button,
-    color: colors.buttonPrimaryText,
+    color: colors.button.primaryText,
   },
 });
 

@@ -36,10 +36,10 @@ const MainTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: colors.tabBarActive,
-        tabBarInactiveTintColor: colors.tabBarInactive,
+        tabBarActiveTintColor: colors.tabBar.active,
+        tabBarInactiveTintColor: colors.tabBar.inactive,
         tabBarStyle: {
-          backgroundColor: colors.tabBarBackground,
+          backgroundColor: colors.tabBar.background,
           height: spacing.tabBarHeight,
           paddingBottom: spacing.sm,
           paddingTop: spacing.sm,
@@ -52,14 +52,14 @@ const MainTabs = () => {
         },
         headerShown: true,
         headerStyle: {
-          backgroundColor: colors.backgroundCard,
+          backgroundColor: colors.card.background,
           elevation: 0,
           shadowOpacity: 0,
         },
-        headerTintColor: colors.textPrimary,
+        headerTintColor: colors.text.primary,
         headerTitleStyle: {
           ...typography.heading4,
-          color: colors.textPrimary,
+          color: colors.text.primary,
         },
       }}
     >
@@ -122,7 +122,7 @@ const AppNavigator = () => {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-          cardStyle: { backgroundColor: colors.background },
+          cardStyle: { backgroundColor: colors.background.light },
         }}
       >
         <Stack.Screen name="MainTabs" component={MainTabs} />
@@ -133,9 +133,9 @@ const AppNavigator = () => {
             headerShown: true,
             headerTitle: 'Weekly Check-In',
             headerStyle: {
-              backgroundColor: colors.backgroundCard,
+              backgroundColor: colors.card.background,
             },
-            headerTintColor: colors.textPrimary,
+            headerTintColor: colors.text.primary,
           }}
         />
       </Stack.Navigator>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -23,15 +23,10 @@ import { typography } from '@/theme/typography';
 type ThemeKey = 'light' | 'dark' | 'system';
 
 /** Notification time picker mode */
-type TimeField = 'morningTime' | 'eveningTime';
+type TimeField = 'morningReminderTime' | 'eveningReminderTime';
 
 export default function SettingsScreen() {
-  const settings = useSettingsStore();
-  const journalStore = useJournalStore();
-  const todoStore = useTodoStore();
-  const weeklyStore = useWeeklyStore();
-
-  const updateSettings = useSettingsStore((s) => s.updateSettings);
+  const settings = useSettingsStore((s) => s.settings);
   const updateNotificationSettings = useSettingsStore(
     (s) => s.updateNotificationSettings,
   );
@@ -67,9 +62,9 @@ export default function SettingsScreen() {
   /** Start editing a time field */
   const startEditTime = (field: TimeField) => {
     const current =
-      field === 'morningTime'
-        ? settings.notifications.morningTime
-        : settings.notifications.eveningTime;
+      field === 'morningReminderTime'
+        ? settings.notifications.morningReminderTime
+        : settings.notifications.eveningReminderTime;
     setTempTime(current);
     setEditingTime(field);
   };
@@ -88,11 +83,7 @@ export default function SettingsScreen() {
       return;
     }
 
-    if (editingTime === 'morningTime') {
-      updateNotificationSettings({ morningTime: tempTime });
-    } else {
-      updateNotificationSettings({ eveningTime: tempTime });
-    }
+    updateNotificationSettings({ [editingTime]: tempTime });
     setEditingTime(null);
     setTempTime('');
   };
@@ -108,8 +99,6 @@ export default function SettingsScreen() {
           text: 'Reset Everything',
           style: 'destructive',
           onPress: () => {
-            journalStore.getAllEntries();
-            // Clear each store's persisted data
             useJournalStore.persist.clearStorage();
             useTodoStore.persist.clearStorage();
             useWeeklyStore.persist.clearStorage();
@@ -235,12 +224,12 @@ export default function SettingsScreen() {
               {settings.notifications.morningEnabled && (
                 <TouchableOpacity
                   style={styles.timeButton}
-                  onPress={() => startEditTime('morningTime')}
+                  onPress={() => startEditTime('morningReminderTime')}
                   activeOpacity={0.7}
                 >
                   <Text style={styles.timeLabel}>Morning Time</Text>
                   <Text style={styles.timeValue}>
-                    {settings.notifications.morningTime}
+                    {settings.notifications.morningReminderTime}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -271,12 +260,12 @@ export default function SettingsScreen() {
               {settings.notifications.eveningEnabled && (
                 <TouchableOpacity
                   style={styles.timeButton}
-                  onPress={() => startEditTime('eveningTime')}
+                  onPress={() => startEditTime('eveningReminderTime')}
                   activeOpacity={0.7}
                 >
                   <Text style={styles.timeLabel}>Evening Time</Text>
                   <Text style={styles.timeValue}>
-                    {settings.notifications.eveningTime}
+                    {settings.notifications.eveningReminderTime}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -287,7 +276,10 @@ export default function SettingsScreen() {
           {editingTime && (
             <View style={styles.timeEditContainer}>
               <Text style={styles.timeEditTitle}>
-                Set {editingTime === 'morningTime' ? 'Morning' : 'Evening'}{' '}
+                Set{' '}
+                {editingTime === 'morningReminderTime'
+                  ? 'Morning'
+                  : 'Evening'}{' '}
                 Reminder Time
               </Text>
               <TextInput
