@@ -1,0 +1,69 @@
+{
+  "name": "mood-tracker-electron",
+  "version": "1.0.0",
+  "description": "Mood Tracker - Electron desktop wrapper",
+  "main": "main.js",
+  "author": "Mood Tracker Team",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dev": "NODE_ENV=development electron .",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux"
+  },
+  "dependencies": {
+    "electron-is-dev": "^3.0.1"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.0"
+  },
+  "build": {
+    "appId": "com.moodtracker.app",
+    "productName": "Mood Tracker",
+    "directories": {
+      "output": "../dist-electron"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "../dist/**/*",
+      "../assets/icon.png"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "../assets/icon.png",
+      "artifactName": "MoodTracker-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Mood Tracker",
+      "installerIcon": "../assets/icon.png",
+      "uninstallerIcon": "../assets/icon.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "../assets/icon.png",
+      "category": "public.app-category.health-fitness"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "icon": "../assets/icon.png",
+      "category": "Utility"
+    }
+  }
+}
